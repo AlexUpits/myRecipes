@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "myRecipes", "",class:"navbar-brand"  %>
+      </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Browse products" %></li>
+          <li><%= link_to "Price list" %></li>
+          <li><%= link_to "Contact us" %></li>
+          <li><%= link_to "Cart" %></li>
+        </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <footer class="footer navbar-fixed-bottom">
+      <div class="container">
+        <p class="text-muted">Build by Alex v - 1</p>
+      </div>
+    </footer>
+</body>
+</html>
