@@ -16,9 +16,8 @@
                     <spam><small><%= time_ago_in_words(recipe.created_at) %></small></spam>
                   </p>
                   
-                  <a href="//github.com/fat" target="_blank" class="btn btn-primary-outline btn-sm m-b">
-                    <span class="icon icon-add-user"></span> View Recipe
-                  </a>
+                  <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
+                  <%= link_to 'Edit recipe', edit_recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
                   
                 </div>
               </div>

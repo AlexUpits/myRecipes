@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <%= link_to "myRecipes", "",class:"navbar-brand"  %>
+        <%= link_to "myRecipes", root_path,class:"navbar-brand"  %>
       </div>
         <ul class="nav navbar-nav">
-          <li><%= link_to "Browse products" %></li>
-          <li><%= link_to "Price list" %></li>
+          <li><%= link_to "Browse recipes", recipes_path %></li>
+          <li><%= link_to "New recipe", new_recipe_path  %></li>
           <li><%= link_to "Contact us" %></li>
           <li><%= link_to "Cart" %></li>
         </ul>

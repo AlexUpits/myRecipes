@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
  
  .panel-profile-img {
     max-width: 100px;

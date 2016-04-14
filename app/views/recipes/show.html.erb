@@ -8,21 +8,8 @@
           <h2><%= @recipe.name %></h2>
           <p class="m-b"><%= @recipe.summary %></p>
           <hr/>
-          <p><%= @recipe.description %></p>
-          <p>
-            <spam><small><%= time_ago_in_words(@recipe.created_at) %></small></spam>
-          </p>
-          
-          <a href="//github.com/fat" target="_blank" class="btn btn-primary-outline btn-sm m-b">
-            <span class="icon icon-add-user"></span> View Recipe
-          </a>
-          
+          <p><strong><%= simple_format(@recipe.description) %></strong></p>
         </div>
       </div>
     </div> 
-    
-    
-    
-    
-    
 </div>
