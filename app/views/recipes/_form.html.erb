@@ -1,4 +1,4 @@
-<%= form_for @recipe, :html => { :class => "form-horizontal recipe" } do |f| %>
+<%= form_for @recipe, :html => { multipart: true, :class => "form-horizontal recipe" } do |f| %>
 
   <% if @recipe.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -36,6 +36,12 @@
     </div>
     <%=f.error_span(:description) %>
   </div>
+  <div class="form-group">
+    <%= f.label :picture, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png', :class => 'form-control' %>
+    </div>
+  </div>
   <!-- <div class="form-group">
     <%= f.label :chef_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -53,3 +59,11 @@
   </div>
 
 <% end %>
+<script type="text/javascript">
+  $('#recipe_picture').bind('change',function(){
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if(size_in_megabytes>5){
+      alert('Maximum file size is 5MB. Please choose a smaller file');
+    }
+  });
+</script>
