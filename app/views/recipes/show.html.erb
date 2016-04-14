@@ -10,6 +10,18 @@
           <p class="m-b"><%= @recipe.summary %></p>
           <hr/>
           <p><strong><%= simple_format(@recipe.description) %></strong></p>
+          <div class="pull-right">
+            <div class="col-md-4">
+              <%= link_to like_recipe_path(@recipe, like: true), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i><%= @recipe.thumbs_up_total %>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%= link_to like_recipe_path(@recipe, like: false), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-down"></i><%= @recipe.thumbs_down_total %>
+              <% end %>  
+            </div>
+          </div>
         </div>
       </div>
     </div> 

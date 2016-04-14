@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
-    before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+    before_action :set_recipe, only: [:show, :edit, :update, :destroy, :like]
    
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.sort_by{ |likes| likes.thumbs_up_total }.reverse
   end
   
   def show
@@ -37,6 +37,11 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def like
+    Like.create(like: params[:like], chef: Chef.first, recipe: @recipe)
+    redirect_to :back
   end
 
   private

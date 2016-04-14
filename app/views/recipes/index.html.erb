@@ -13,7 +13,10 @@
                   <h5 class="panel-title"><%= link_to recipe.name, recipe_path(recipe) %></h5>
                   <p class="m-b"><%= recipe.summary %></p>
                   <p>
-                    <spam><small><%= time_ago_in_words(recipe.created_at) %></small></spam>
+                    <spam><small><%= time_ago_in_words(recipe.created_at) %>&nbsp
+                    <i class="glyphicon glyphicon-thumbs-up"></i><%= recipe.thumbs_up_total %>&nbsp
+                    <i class="glyphicon glyphicon-thumbs-down"></i>&nbsp<%= recipe.thumbs_down_total %>
+                    </small></spam>
                   </p>
                   
                   <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
