@@ -1,30 +1,33 @@
 <h1>All Recipes</h1>
 <hr/>
- 
- 
+<%= will_paginate %>
 <div class="container">
     <div class="row">
         <% @recipes.each do |recipe| %>
-           <div class="col-md-4 m-b-lg">
-              <div class="panel panel-default panel-profile m-b-0">
-                 <div class="panel-heading" style="background-image: url(<%= recipe.picture.url %>);"></div>
-                <div class="panel-body text-center">
-                  <%= gravatar_for recipe.chef, size: 50 %>
-                  <h5 class="panel-title"><%= link_to recipe.name, recipe_path(recipe) %></h5>
-                  <p class="m-b"><%= recipe.summary %></p>
-                  <p>
-                    <spam><small><%= time_ago_in_words(recipe.created_at) %>&nbsp
-                    <i class="glyphicon glyphicon-thumbs-up"></i><%= recipe.thumbs_up_total %>&nbsp
-                    <i class="glyphicon glyphicon-thumbs-down"></i>&nbsp<%= recipe.thumbs_down_total %>
-                    </small></spam>
-                  </p>
-                  
-                  <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
-                  <%= link_to 'Edit recipe', edit_recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
-                  
+            <div class="col-md-4 m-b-lg">
+                <div class="panel panel-default panel-profile m-b-0">
+                    <div class="panel-heading" style="background-image: url(<%= recipe.picture.url %>);"></div>
+                    <div class="panel-body text-center">
+                        <%= gravatar_for recipe.chef, size: 50 %>
+                        <h5 class="panel-title ellipses"><%= link_to recipe.name, recipe_path(recipe) %></h5>
+                        <p class="m-b ellipses"><%= recipe.summary %></p>
+                        <p>
+                        <spam><small>update at <%= time_ago_in_words(recipe.updated_at) %>&nbsp
+                        <i class="glyphicon glyphicon-thumbs-up"></i><%= recipe.thumbs_up_total %>&nbsp
+                        <i class="glyphicon glyphicon-thumbs-down"></i>&nbsp<%= recipe.thumbs_down_total %>
+                        </small></spam>
+                        </p>
+                        
+                        <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
+                        <%= link_to 'Edit recipe', edit_recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
+                    </div>
                 </div>
-              </div>
             </div> 
         <% end %>
     </div>
 </div>
+<% if @recipes.next_page %>
+    <div id="infinite-scrolling">
+      <%= will_paginate %>
+    </div>
+<% end %>
