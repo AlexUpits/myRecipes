@@ -1,7 +1,13 @@
 <%- model_class = Chef -%>
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to "Recipes", recipes_path %></li>
+  <li role="presentation" class="active"><%= link_to "Chefs", chefs_path %></li>
+</ul>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
 <%= will_paginate %>
 <table class="table table-striped">
   <thead>
