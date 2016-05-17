@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
    
   def index
     #@recipes = Recipe.all.sort_by{ |likes| likes.thumbs_up_total }.reverse
-    @recipes = Recipe.paginate(page: params[:page], per_page: 4)
+    @recipes = Recipe.paginate(page: params[:page], per_page: 6)
   end
   
   def show
