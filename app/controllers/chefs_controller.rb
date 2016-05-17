@@ -1,6 +1,7 @@
 class ChefsController < ApplicationController
     before_action :set_chef, only: [:show, :edit, :update, :destroy]
-    
+    before_action :require_same_user, only: [:edit, :update] 
+
     def index 
         @chefs = Chef.paginate(page: params[:page], per_page: 5)    
     end 
@@ -43,5 +44,11 @@ class ChefsController < ApplicationController
         def set_chef 
             @chef = Chef.find(params[:id])
             @recipes = @chef.recipes.paginate(page: params[:page], per_page: 6)
+        end
+        
+        def require_same_user
+            if @chef != current_user
+                redirect_to root_path, notice: 'Recipe was successfully updated.' 
+            end
         end
 end
