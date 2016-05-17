@@ -27,7 +27,7 @@ class ChefsController < ApplicationController
     def update 
         respond_to do |format|
             if @chef.update(chef_params)
-                format.html { redirect_to recipes_path, notice: 'Recipe was successfully updated.' }
+                format.html { redirect_to  chef_path(@chef), notice: 'Recipe was successfully updated.' }
                 format.json { render :show, status: :ok, location: @chef }
             else
                 format.html { render :edit }
