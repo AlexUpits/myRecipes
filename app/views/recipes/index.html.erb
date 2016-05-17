@@ -17,10 +17,10 @@
                         <i class="glyphicon glyphicon-thumbs-down"></i>&nbsp<%= recipe.thumbs_down_total %>
                         </small></spam>
                         </p>
+                        <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
                         <% if logged_in? and recipe.chef == current_user %>
-                            <%= link_to 'Show recipe', recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
+                            <%= link_to 'Edit recipe', edit_recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
                         <% end %>
-                        <%= link_to 'Edit recipe', edit_recipe_path(recipe), class: "btn btn-primary-outline btn-sm m-b" %>
                     </div>
                 </div>
             </div> 
