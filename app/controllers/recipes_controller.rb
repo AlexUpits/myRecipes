@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy, :like]
-  before_action :require_user, except: [:show, :index]
+  before_action :require_user, except: [:show, :index, :like]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_user_like, only: [:like]
    
   def index
     #@recipes = Recipe.all.sort_by{ |likes| likes.thumbs_up_total }.reverse
@@ -50,8 +51,9 @@ class RecipesController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+    
     def recipe_params
-      params.require(:recipe).permit(:name, :summary, :description, :picture)
+      params.require(:recipe).permit(:name, :summary, :description, :picture, style_ids: [], ingredient_ids: [])
     end
     
     def set_recipe
@@ -62,5 +64,11 @@ class RecipesController < ApplicationController
       if @recipe.chef != current_user
         redirect_to recipes_path, notice: 'Recipe was successfully updated.' 
       end
+    end
+    
+    def require_user_like
+      if !logged_in?
+        redirect_to :back, notice: 'Recipe was successfully updated.' 
+      end  
     end
 end

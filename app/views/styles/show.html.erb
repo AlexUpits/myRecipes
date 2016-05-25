@@ -1,11 +1,13 @@
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><%= link_to "Recipes", recipes_path %></li>
-  <li role="presentation"><%= link_to "Chefs", chefs_path %></li>
-</ul>
+<%- model_class = Style -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<h1>All Recipes</h1>
-<hr/>
-<%= will_paginate %>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @style.name %></dd>
+</dl>
+<%= will_paginate @recipes %>
 <div class="container">
     <div class="row">
         <% @recipes.each do |recipe| %>
@@ -35,6 +37,15 @@
 </div>
 <% if @recipes.next_page %>
     <div id="infinite-scrolling">
-      <%= will_paginate %>
+      <%= will_paginate  @recipes %>
     </div>
 <% end %>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              recipes_path, :class => 'btn btn-default'  %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              style_path(@style),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
