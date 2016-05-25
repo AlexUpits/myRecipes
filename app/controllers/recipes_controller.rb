@@ -61,8 +61,8 @@ class RecipesController < ApplicationController
     end
     
     def require_same_user
-      if @recipe.chef != current_user
-        redirect_to recipes_path, notice: 'Recipe was successfully updated.' 
+      if @recipe.chef != current_user && !current_user.admin?
+        redirect_to recipes_path, notice: 'You can only edit your own recipes.' 
       end
     end
     
