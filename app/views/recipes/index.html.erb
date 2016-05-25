@@ -16,8 +16,12 @@
                         <%= link_to gravatar_for(recipe.chef, size: 50), chef_path(recipe.chef)  %>
                         <h5 class="panel-title ellipses"><%= link_to recipe.name, recipe_path(recipe) %></h5>
                         <p class="m-b ellipses"><%= recipe.summary %></p>
+                        <% if recipe.styles.any? %>
                         <p><small>Styles: <%= render recipe.styles %></small></p>
-                        <p><small>Ingredients: <%= render recipe.ingredients  %></small></p>
+                        <% end %>    
+                        <% if recipe.styles.any? %>
+                            <p><small>Ingredients: <%= render recipe.ingredients  %></small></p>
+                        <% end %>    
                         <spam><small>update at <%= time_ago_in_words(recipe.updated_at) %>&nbsp
                         <i class="glyphicon glyphicon-thumbs-up"></i><%= recipe.thumbs_up_total %>&nbsp
                         <i class="glyphicon glyphicon-thumbs-down"></i>&nbsp<%= recipe.thumbs_down_total %>

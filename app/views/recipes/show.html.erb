@@ -8,8 +8,12 @@
           <%= link_to gravatar_for(@recipe.chef, size: 50), chef_path(@recipe.chef) %>
           <h2 class="dont-break-out"><%= @recipe.name %></h2>
           <p class="m-b dont-break-out"><%= @recipe.summary %></p>
-          <p>Styles: <%= render @recipe.styles %></small></p>
-          <p>Ingredients: <%= render @recipe.ingredients  %></small></p>
+          <% if @recipe.styles.any? %>
+            <p>Styles: <%= render @recipe.styles %></small></p>
+          <% end %>    
+          <% if @recipe.styles.any? %>
+            <p>Ingredients: <%= render @recipe.ingredients  %></small></p>
+          <% end %>    
           <hr/>
           <p><strong class="dont-break-out"><%= simple_format(@recipe.description) %></strong></p>
           <div class="pull-right">
