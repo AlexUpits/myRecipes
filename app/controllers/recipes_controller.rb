@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy, :like]
   before_action :require_user, except: [:show, :index, :like]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update]
   before_action :require_user_like, only: [:like]
+  before_action :admin_user, only: :destroy
    
   def index
     #@recipes = Recipe.all.sort_by{ |likes| likes.thumbs_up_total }.reverse
@@ -11,6 +12,14 @@ class RecipesController < ApplicationController
   
   def show
   
+  end
+  
+  def destroy
+    @recipe.destroy
+    respond_to do |format|
+      format.html { redirect_to recipes_path, notice: 'Recipe was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
  
   def new
@@ -70,5 +79,9 @@ class RecipesController < ApplicationController
       if !logged_in?
         redirect_to :back, notice: 'Recipe was successfully updated.' 
       end  
+    end
+    
+    def admin_user
+      redirect_to recipes_path unless current_user.admin? 
     end
 end
